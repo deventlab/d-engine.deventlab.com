@@ -89,7 +89,7 @@ async fn main() {
       <h2>Hello World</h2>
       <pre class="code"><code>{hello}</code></pre>
       <p>
-        Scale to 3 nodes:
+        Scale to 3 nodes:{" "}
         <a href="https://github.com/deventlab/d-engine/tree/main/examples/three-nodes-embedded">three-nodes-embedded example</a>.
       </p>
       <p class="note">Running this in production? Talk to us → <a href="mailto:contact@deventlab.com">contact@deventlab.com</a></p>
@@ -120,7 +120,7 @@ async fn main() {
         d-engine lets you swap the storage engine, and different engines perform differently. These numbers use the raft-engine log store.
         Embedded calls skip serialization and the network, so the read ratios measure that, not only the engine.
         Three rounds per case on different instances of the same shape; treat ratios as indicative, about ±20%.
-        Standalone (gRPC) results and other storage engines are in the
+        Standalone (gRPC) results and other storage engines are in the{" "}
         <a href="https://github.com/deventlab/d-engine/tree/main/benches/reports">full report</a>.
       </p>
     </section>
@@ -129,7 +129,7 @@ async fn main() {
       <h2>Correctness</h2>
       <p class="lead">
         Tested with Jepsen: 5 workloads and a 6-hour soak under combined kill, partition and pause faults.
-        Every commit waits for a physical fdatasync before it is acknowledged.
+        Every commit waits for a physical fdatasync before it is acknowledged.{" "}
         <a href="https://github.com/deventlab/d-engine-jepsen/blob/main/GUARANTEES.md">Read the guarantees</a>.
       </p>
     </section>
@@ -137,7 +137,7 @@ async fn main() {
     <section class="wrap">
       <h2>Built on d-engine</h2>
       <div class="compare">
-        <div class="card"><h3>d-lmdb</h3><p>A distributed LMDB built on d-engine. <a href="https://blog.deventlab.com">Read the post</a>.</p></div>
+        <div class="card"><h3>d-lmdb <small>Experimental</small></h3><p>A distributed LMDB built on d-engine. <a href="https://blog.deventlab.com">Read the post</a>.</p></div>
       </div>
     </section>
   </main>
@@ -149,6 +149,7 @@ async fn main() {
   h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.08; margin: 0 0 20px; color: var(--dl-primary); letter-spacing: -0.02em; }
   h2 { font-size: 1.7rem; margin: 0 0 24px; color: var(--dl-primary); letter-spacing: -0.01em; }
   h3 { margin: 0 0 12px; font-size: 1.05rem; }
+  h3 small { margin-left: 8px; font-size: 0.75rem; font-weight: 500; color: var(--dl-muted); }
   .sub { font-size: 1.35rem; margin: 0 0 8px; }
   .analogy, .lead { color: var(--dl-muted); max-width: 720px; }
   .cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: 28px; }
