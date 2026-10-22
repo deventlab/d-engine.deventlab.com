@@ -28,12 +28,21 @@ async fn main() {
 >
   <main>
     <section class="hero wrap">
-      <h1>Raft consensus,<br />embedded in your app.</h1>
+      <h1>
+        Raft consensus,
+        <br />
+        embedded in your app.
+      </h1>
       <p class="sub">Fault-tolerant replication as a library. No separate cluster to run.</p>
-      <p class="analogy">Think SQLite, but for keeping several servers in agreement. Consensus and replication only. Not a database.</p>
+      <p class="analogy">
+        Think SQLite, but for keeping several servers in agreement. Consensus and replication only.
+        Not a database.
+      </p>
       <div class="cta">
         <code class="install">cargo add d-engine</code>
-        <a class="btn" href="https://github.com/deventlab/d-engine">View on GitHub</a>
+        <a class="btn" href="https://github.com/deventlab/d-engine">
+          View on GitHub
+        </a>
       </div>
       <p class="note">Not on Rust? Run it as a standalone service over gRPC.</p>
     </section>
@@ -44,7 +53,8 @@ async fn main() {
         <div class="card">
           <h3>Typical: external coordination service</h3>
           <div class="flow">
-            <span class="box">Your app</span><span class="arrow">→ network →</span>
+            <span class="box">Your app</span>
+            <span class="arrow">→ network →</span>
             <span class="box dashed">etcd / ZooKeeper cluster</span>
           </div>
           <p>Deploy it. Operate it. Monitor it. Upgrade it.</p>
@@ -52,7 +62,9 @@ async fn main() {
         <div class="card primary">
           <h3>d-engine: embedded</h3>
           <div class="flow">
-            <span class="box solid">Your app<small>+ d-engine</small></span>
+            <span class="box solid">
+              Your app<small>+ d-engine</small>
+            </span>
           </div>
           <p>One process. One binary. Calls are in-process.</p>
         </div>
@@ -61,7 +73,11 @@ async fn main() {
 
     <section class="wrap">
       <h2>Kill one node. The other two keep serving.</h2>
-      <img class="gif" src="/demo.gif" alt="A 3-node d-engine cluster keeps serving after one node is killed" />
+      <img
+        class="gif"
+        src="/demo.gif"
+        alt="A 3-node d-engine cluster keeps serving after one node is killed"
+      />
     </section>
 
     <section class="wrap">
@@ -69,18 +85,39 @@ async fn main() {
       <div class="compare">
         <div class="card">
           <h3>Use it if</h3>
-          <p>You want leader election, replication, service discovery or configuration consistency inside your own service, without running another cluster.</p>
+          <p>
+            You want leader election, replication, service discovery or configuration consistency
+            inside your own service, without running another cluster.
+          </p>
         </div>
         <div class="card">
           <h3>Build on it if</h3>
-          <p>You need a specific database or state machine that is replicated and fault-tolerant. d-engine provides consensus and replication; you plug in the storage. d-lmdb is a distributed LMDB built this way.</p>
+          <p>
+            You need a specific database or state machine that is replicated and fault-tolerant.
+            d-engine provides consensus and replication; you plug in the storage. d-lmdb is a
+            distributed LMDB built this way.
+          </p>
         </div>
       </div>
       <table class="plain">
-        <thead><tr><th>Language</th><th>Embedded (in-process)</th><th>Standalone (gRPC)</th></tr></thead>
+        <thead>
+          <tr>
+            <th>Language</th>
+            <th>Embedded (in-process)</th>
+            <th>Standalone (gRPC)</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr><td>Rust</td><td>Available</td><td>Available</td></tr>
-          <tr><td>Go, Java, Python, ...</td><td>Planned (C ABI)</td><td>Available</td></tr>
+          <tr>
+            <td>Rust</td>
+            <td>Available</td>
+            <td>Available</td>
+          </tr>
+          <tr>
+            <td>Go, Java, Python, ...</td>
+            <td>Planned (C ABI)</td>
+            <td>Available</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -90,20 +127,34 @@ async fn main() {
       <pre class="code"><code>{hello}</code></pre>
       <p>
         Scale to 3 nodes:{" "}
-        <a href="https://github.com/deventlab/d-engine/tree/main/examples/three-nodes-embedded">three-nodes-embedded example</a>.
+        <a href="https://github.com/deventlab/d-engine/tree/main/examples/three-nodes-embedded">
+          three-nodes-embedded example
+        </a>
+        .
       </p>
-      <p class="note">Running this in production? Talk to us → <a href="mailto:contact@deventlab.com">contact@deventlab.com</a></p>
+      <p class="note">
+        Running this in production? Talk to us →{" "}
+        <a href="mailto:contact@deventlab.com">contact@deventlab.com</a>
+      </p>
     </section>
 
     <section class="wrap" id="performance">
       <h2>Performance, measured against etcd</h2>
       <p class="lead">
-        Embedded mode, 100 requests in flight, 256 B values. AWS us-east-1, 3 × c5.2xlarge, gp3 disk.
-        d-engine against etcd v3.7.2 on the same instance shape. Every acknowledged write is synced to disk first, as in etcd.
+        Embedded mode, 100 requests in flight, 256 B values. AWS us-east-1, 3 × c5.2xlarge, gp3
+        disk. d-engine against etcd v3.7.2 on the same instance shape. Every acknowledged write is
+        synced to disk first, as in etcd.
       </p>
       <div class="bench">
         <table class="plain">
-          <thead><tr><th>Case</th><th>etcd (ops/s)</th><th>d-engine (ops/s)</th><th>d-engine ÷ etcd</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>etcd (ops/s)</th>
+              <th>d-engine (ops/s)</th>
+              <th>d-engine ÷ etcd</th>
+            </tr>
+          </thead>
           <tbody>
             {embedded.map((r) => (
               <tr>
@@ -117,10 +168,11 @@ async fn main() {
         </table>
       </div>
       <p class="note">
-        d-engine lets you swap the storage engine, and different engines perform differently. These numbers use the raft-engine log store.
-        Embedded calls skip serialization and the network, so the read ratios measure that, not only the engine.
-        Three rounds per case on different instances of the same shape; treat ratios as indicative, about ±20%.
-        Standalone (gRPC) results and other storage engines are in the{" "}
+        d-engine lets you swap the storage engine, and different engines perform differently. These
+        numbers use the raft-engine log store. Embedded calls skip serialization and the network, so
+        the read ratios measure that, not only the engine. Three rounds per case on different
+        instances of the same shape; treat ratios as indicative, about ±20%. Standalone (gRPC)
+        results and other storage engines are in the{" "}
         <a href="https://github.com/deventlab/d-engine/tree/main/benches/reports">full report</a>.
       </p>
     </section>
@@ -128,55 +180,205 @@ async fn main() {
     <section class="wrap" id="correctness">
       <h2>Correctness</h2>
       <p class="lead">
-        Tested with Jepsen: 5 workloads and a 6-hour soak under combined kill, partition and pause faults.
-        Every commit waits for a physical fdatasync before it is acknowledged.{" "}
-        <a href="https://github.com/deventlab/d-engine-jepsen/blob/main/GUARANTEES.md">Read the guarantees</a>.
+        Tested with Jepsen: 5 workloads and a 6-hour soak under combined kill, partition and pause
+        faults. Every commit waits for a physical fdatasync before it is acknowledged.{" "}
+        <a href="https://github.com/deventlab/d-engine-jepsen/blob/main/GUARANTEES.md">
+          Read the guarantees
+        </a>
+        .
       </p>
     </section>
 
     <section class="wrap">
       <h2>Built on d-engine</h2>
       <div class="compare">
-        <div class="card"><h3>d-lmdb <small>Experimental</small></h3><p>A distributed LMDB built on d-engine. <a href="https://blog.deventlab.com">Read the post</a>.</p></div>
+        <div class="card">
+          <h3>
+            d-lmdb <small>Experimental</small>
+          </h3>
+          <p>
+            A distributed LMDB built on d-engine.{" "}
+            <a href="https://blog.deventlab.com">Read the post</a>.
+          </p>
+        </div>
       </div>
     </section>
   </main>
 </Base>
 
 <style>
-  section { padding-top: 72px; }
-  .hero { padding-top: 88px; }
-  h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.08; margin: 0 0 20px; color: var(--dl-primary); letter-spacing: -0.02em; }
-  h2 { font-size: 1.7rem; margin: 0 0 24px; color: var(--dl-primary); letter-spacing: -0.01em; }
-  h3 { margin: 0 0 12px; font-size: 1.05rem; }
-  h3 small { margin-left: 8px; font-size: 0.75rem; font-weight: 500; color: var(--dl-muted); }
-  .sub { font-size: 1.35rem; margin: 0 0 8px; }
-  .analogy, .lead { color: var(--dl-muted); max-width: 720px; }
-  .cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: 28px; }
-  .install { background: var(--dl-primary); color: #fff; padding: 12px 18px; border-radius: 10px; font-size: 1rem; }
-  .btn { background: var(--dl-accent); color: #fff; padding: 12px 20px; border-radius: 10px; text-decoration: none; font-weight: 600; }
-  .btn:hover { filter: brightness(0.92); }
-  .note { color: var(--dl-muted); font-size: 0.9rem; max-width: 760px; }
+  section {
+    padding-top: 72px;
+  }
+  .hero {
+    padding-top: 88px;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    line-height: 1.08;
+    margin: 0 0 20px;
+    color: var(--dl-primary);
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    font-size: 1.7rem;
+    margin: 0 0 24px;
+    color: var(--dl-primary);
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+  }
+  h3 small {
+    margin-left: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--dl-muted);
+  }
+  .sub {
+    font-size: 1.35rem;
+    margin: 0 0 8px;
+  }
+  .analogy,
+  .lead {
+    color: var(--dl-muted);
+    max-width: 720px;
+  }
+  .cta {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .install {
+    background: var(--dl-primary);
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
+  .btn {
+    background: var(--dl-accent);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .btn:hover {
+    filter: brightness(0.92);
+  }
+  .note {
+    color: var(--dl-muted);
+    font-size: 0.9rem;
+    max-width: 760px;
+  }
 
-  .compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-  .card { background: var(--dl-white); border: 1px solid var(--dl-border); border-radius: 14px; padding: 24px; }
-  .card.primary { border-color: var(--dl-primary); }
-  .card p { margin: 12px 0 0; color: var(--dl-muted); }
-  .flow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; min-height: 64px; }
-  .arrow { color: var(--dl-muted); font-size: 0.9rem; }
-  .box { display: inline-flex; flex-direction: column; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--dl-border); background: var(--dl-ground); font-weight: 600; }
-  .box small { font-weight: 500; opacity: 0.85; }
-  .box.dashed { border-style: dashed; }
-  .box.solid { background: var(--dl-primary); color: #fff; border-color: var(--dl-primary); }
+  .compare {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--dl-white);
+    border: 1px solid var(--dl-border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .card.primary {
+    border-color: var(--dl-primary);
+  }
+  .card p {
+    margin: 12px 0 0;
+    color: var(--dl-muted);
+  }
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    min-height: 64px;
+  }
+  .arrow {
+    color: var(--dl-muted);
+    font-size: 0.9rem;
+  }
+  .box {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--dl-border);
+    background: var(--dl-ground);
+    font-weight: 600;
+  }
+  .box small {
+    font-weight: 500;
+    opacity: 0.85;
+  }
+  .box.dashed {
+    border-style: dashed;
+  }
+  .box.solid {
+    background: var(--dl-primary);
+    color: #fff;
+    border-color: var(--dl-primary);
+  }
 
-  .gif { width: 100%; max-width: 860px; border-radius: 14px; border: 1px solid var(--dl-border); display: block; }
-  .code { background: var(--dl-primary); color: #e6ebf5; padding: 24px; border-radius: 14px; overflow-x: auto; font-size: 0.9rem; line-height: 1.55; margin: 0 0 16px; }
+  .gif {
+    width: 100%;
+    max-width: 860px;
+    border-radius: 14px;
+    border: 1px solid var(--dl-border);
+    display: block;
+  }
+  .code {
+    background: var(--dl-primary);
+    color: #e6ebf5;
+    padding: 24px;
+    border-radius: 14px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin: 0 0 16px;
+  }
 
-  .plain { width: 100%; border-collapse: collapse; background: var(--dl-white); border: 1px solid var(--dl-border); border-radius: 10px; margin-top: 20px; font-size: 0.95rem; }
-  .plain th, .plain td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--dl-border); }
-  .plain th { color: var(--dl-muted); font-weight: 600; font-size: 0.85rem; }
-  .plain td:not(:first-child), .plain th:not(:first-child) { white-space: nowrap; }
-  .bench { margin-top: 28px; }
-  .win { color: var(--dl-primary); font-weight: 700; }
-  .behind { color: var(--dl-ink); font-weight: 700; opacity: 0.7; }
+  .plain {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--dl-white);
+    border: 1px solid var(--dl-border);
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 0.95rem;
+  }
+  .plain th,
+  .plain td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--dl-border);
+  }
+  .plain th {
+    color: var(--dl-muted);
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+  .plain td:not(:first-child),
+  .plain th:not(:first-child) {
+    white-space: nowrap;
+  }
+  .bench {
+    margin-top: 28px;
+  }
+  .win {
+    color: var(--dl-primary);
+    font-weight: 700;
+  }
+  .behind {
+    color: var(--dl-ink);
+    font-weight: 700;
+    opacity: 0.7;
+  }
 </style>
