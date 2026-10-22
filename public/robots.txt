@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://d-engine.deventlab.com/sitemap-index.xml
